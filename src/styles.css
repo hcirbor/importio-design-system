@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--io-font-sans);
+  --font-mono: var(--io-font-mono);
+  --color-background: var(--io-color-background);
+  --color-surface: var(--io-color-surface);
+  --color-raised: var(--io-color-raised);
+  --color-foreground: var(--io-color-foreground);
+  --color-muted: var(--io-color-muted);
+  --color-subtle: var(--io-color-subtle);
+  --color-border: var(--io-color-border);
+  --color-control: var(--io-color-control);
+  --color-primary: var(--io-color-primary);
+  --color-primary-hover: var(--io-color-primary-hover);
+  --color-on-primary: var(--io-color-on-primary);
+  --color-link: var(--io-color-link);
+  --color-selected: var(--io-color-selected);
+  --color-success: var(--io-color-success);
+  --color-success-soft: var(--io-color-success-soft);
+  --color-warning: var(--io-color-warning);
+  --color-warning-soft: var(--io-color-warning-soft);
+  --color-danger: var(--io-color-danger);
+  --color-danger-soft: var(--io-color-danger-soft);
+  --radius-control: var(--io-radius-control);
+  --radius-panel: var(--io-radius-panel);
+  --shadow-panel: var(--io-shadow-panel);
+  --ease-standard: var(--io-ease-standard);
+}
+
+:root {
+  --io-font-sans: Inter, ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --io-font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --io-color-brand: #4f6bff;
+  --io-color-background: #f6f7fb;
+  --io-color-surface: #ffffff;
+  --io-color-raised: #eef0f7;
+  --io-color-foreground: #171126;
+  --io-color-muted: #514a63;
+  --io-color-subtle: #665e76;
+  --io-color-border: #ddd8e6;
+  --io-color-control: #867992;
+  --io-color-primary: #2e4bff;
+  --io-color-primary-hover: #1f3cf0;
+  --io-color-on-primary: #ffffff;
+  --io-color-link: #2945db;
+  --io-color-selected: #e8edff;
+  --io-color-focus: #2945db;
+  --io-color-success: #176b45;
+  --io-color-success-soft: #e5f5ed;
+  --io-color-warning: #805100;
+  --io-color-warning-soft: #fff1d6;
+  --io-color-danger: #ad2243;
+  --io-color-danger-soft: #ffebf0;
+
+  --io-space-1: 0.25rem;
+  --io-space-2: 0.5rem;
+  --io-space-3: 0.75rem;
+  --io-space-4: 1rem;
+  --io-space-6: 1.5rem;
+  --io-space-8: 2rem;
+  --io-space-12: 3rem;
+  --io-radius-sm: 0.3125rem;
+  --io-radius-control: 0.4375rem;
+  --io-radius-panel: 0.75rem;
+  --io-shadow-panel: 0 0.5rem 1.75rem rgb(23 17 38 / 7%);
+  --io-ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --io-duration-fast: 150ms;
+  --io-duration-standard: 180ms;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --io-color-background: #06030b;
+  --io-color-surface: #0b0a0e;
+  --io-color-raised: #15131a;
+  --io-color-foreground: #f8f8fb;
+  --io-color-muted: #c7c4ce;
+  --io-color-subtle: #938f9c;
+  --io-color-border: #292630;
+  --io-color-control: #514b59;
+  --io-color-primary: #3d58ef;
+  --io-color-primary-hover: #6680ff;
+  --io-color-link: #91a2ff;
+  --io-color-selected: #151b36;
+  --io-color-focus: #6f86ff;
+  --io-color-success: #72dca8;
+  --io-color-success-soft: #102a21;
+  --io-color-warning: #efc36e;
+  --io-color-warning-soft: #2b2113;
+  --io-color-danger: #ff9eaf;
+  --io-color-danger-soft: #30151f;
+  --io-shadow-panel: 0 0.75rem 2.25rem rgb(0 0 0 / 38%);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --io-color-background: #06030b;
+    --io-color-surface: #0b0a0e;
+    --io-color-raised: #15131a;
+    --io-color-foreground: #f8f8fb;
+    --io-color-muted: #c7c4ce;
+    --io-color-subtle: #938f9c;
+    --io-color-border: #292630;
+    --io-color-control: #514b59;
+    --io-color-primary: #3d58ef;
+    --io-color-primary-hover: #6680ff;
+    --io-color-link: #91a2ff;
+    --io-color-selected: #151b36;
+    --io-color-focus: #6f86ff;
+    --io-color-success: #72dca8;
+    --io-color-success-soft: #102a21;
+    --io-color-warning: #efc36e;
+    --io-color-warning-soft: #2b2113;
+    --io-color-danger: #ff9eaf;
+    --io-color-danger-soft: #30151f;
+    --io-shadow-panel: 0 0.75rem 2.25rem rgb(0 0 0 / 38%);
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--io-color-border);
+  }
+
+  body {
+    margin: 0;
+    background: var(--io-color-background);
+    color: var(--io-color-foreground);
+    font-family: var(--io-font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--io-color-focus);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--io-color-selected);
+    color: var(--io-color-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keep Storybook's generated Docs surface aligned with the selected preview theme. */
+[data-theme="dark"] .sbdocs-wrapper,
+[data-theme="dark"] .sbdocs-content,
+[data-theme="dark"] .docs-story {
+  background: var(--io-color-background) !important;
+  color: var(--io-color-foreground) !important;
+}
+
+[data-theme="dark"] .sbdocs-preview,
+[data-theme="dark"] .sbdocs-preview > div {
+  background: var(--io-color-surface) !important;
+  border-color: var(--io-color-border) !important;
+}
+
+[data-theme="dark"] .sbdocs-title,
+[data-theme="dark"] .sbdocs-subtitle,
+[data-theme="dark"] .sbdocs-p,
+[data-theme="dark"] .sbdocs-h1,
+[data-theme="dark"] .sbdocs-h2,
+[data-theme="dark"] .sbdocs-h3,
+[data-theme="dark"] .sbdocs-h4,
+[data-theme="dark"] .sbdocs-li {
+  color: var(--io-color-foreground) !important;
+}

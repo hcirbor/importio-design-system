@@ -1,0 +1,7 @@
+.github
+.storybook
+src
+storybook-static
+coverage
+*.config.*
+tsconfig.json
