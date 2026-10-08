@@ -18,7 +18,10 @@ const themeFromUrl = () => new URLSearchParams(window.location.search)
   ?.slice('theme:'.length);
 
 const setManagerTheme = (theme?: string) => {
-  addons.setConfig({ theme: theme === 'dark' ? darkTheme : lightTheme });
+  addons.setConfig({
+    theme: theme === 'dark' ? darkTheme : lightTheme,
+    showPanel: false,
+  });
 };
 
 setManagerTheme(themeFromUrl());
