@@ -77,7 +77,7 @@ function DataExplorerPattern() {
               <SelectItem value="review">Needs review</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="secondary"><Filter className="size-4" /> More filters</Button>
+          <Button className="whitespace-nowrap" variant="secondary"><Filter className="size-4" /> More filters</Button>
         </div>
         <Table>
           <TableHeader><TableRow><TableHead>Source</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Records</TableHead><TableHead>Updated</TableHead><TableHead><span className="sr-only">Actions</span></TableHead></TableRow></TableHeader>
