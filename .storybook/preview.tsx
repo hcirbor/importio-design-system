@@ -24,7 +24,7 @@ const preview: Preview = {
     controls: { expanded: true },
     a11y: { test: 'error' },
     backgrounds: { disable: true },
-    options: { storySort: { order: ['Getting started', 'Brand', 'Foundations', 'Components', 'Patterns', 'Resources'] } },
+    options: { storySort: { order: ['Getting started', 'Brand', 'Foundations', 'Components', ['Overview', 'Badge', 'Button', 'Card', 'Dialog', 'Field', 'Select', 'Table', 'Tabs', 'Tooltip'], 'Patterns', 'Resources'] } },
   },
   tags: ['autodocs'],
 };
