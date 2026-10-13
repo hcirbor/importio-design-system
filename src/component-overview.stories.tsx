@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Info, Plus, Settings2, Trash2 } from 'lucide-react';
+import { Check, ChevronDown, Info, LoaderCircle, Plus, Settings2, Trash2, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import {
   Badge,
@@ -84,6 +84,15 @@ function Specimen({ label, note, children }: { label: string; note?: string; chi
   );
 }
 
+function StateSample({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="grid min-w-28 gap-2">
+      <span className="font-mono text-[0.625rem] uppercase tracking-[0.08em] text-subtle">{label}</span>
+      <div className="flex min-h-11 items-center">{children}</div>
+    </div>
+  );
+}
+
 function OverviewPage() {
   return (
     <main className="min-h-screen bg-background p-5 text-foreground sm:p-8 lg:p-12">
@@ -112,6 +121,16 @@ function OverviewPage() {
             <Button variant="secondary" disabled>Secondary</Button>
             <Button variant="ghost" disabled>Ghost</Button>
             <Button variant="danger" disabled>Delete</Button>
+          </Specimen>
+          <Specimen label="Interaction states" note="Hover, focus and pressed are forced visual references for review; they are CSS states, not component props.">
+            <StateSample label="Default"><Button variant="primary">Continue</Button></StateSample>
+            <StateSample label="Hover"><Button variant="primary" className="border-primary-hover bg-primary-hover">Continue</Button></StateSample>
+            <StateSample label="Focus"><Button variant="primary" className="outline outline-2 outline-offset-[3px] outline-[var(--io-color-focus)]">Continue</Button></StateSample>
+            <StateSample label="Pressed"><Button variant="primary" className="translate-y-px border-primary-hover bg-primary-hover shadow-inner">Continue</Button></StateSample>
+          </Specimen>
+          <Specimen label="Loading" note="Loading is composed from the button, an icon and aria-busy; it is not a separate visual variant.">
+            <Button variant="primary" aria-busy="true" disabled><LoaderCircle className="animate-spin" />Creating source…</Button>
+            <Button variant="secondary" aria-busy="true" disabled><LoaderCircle className="animate-spin" />Refreshing…</Button>
           </Specimen>
         </Section>
 
@@ -144,6 +163,19 @@ function OverviewPage() {
               <Select><SelectTrigger aria-label="Choose status"><SelectValue placeholder="Choose status" /></SelectTrigger><SelectContent><SelectItem value="all">All statuses</SelectItem><SelectItem value="complete">Complete</SelectItem><SelectItem value="review">Needs review</SelectItem></SelectContent></Select>
               <Select defaultValue="complete"><SelectTrigger aria-label="Selected status"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="complete">Complete</SelectItem><SelectItem value="running">Running</SelectItem></SelectContent></Select>
               <Select disabled><SelectTrigger aria-label="Disabled status"><SelectValue placeholder="Unavailable" /></SelectTrigger><SelectContent><SelectItem value="none">Unavailable</SelectItem></SelectContent></Select>
+            </div>
+          </Specimen>
+          <Specimen label="Select open" note="A stable anatomy reference shows the open menu without placing a portal over the full inventory.">
+            <div className="grid w-full max-w-xs gap-1" aria-label="Open select visual reference">
+              <div className="flex min-h-10 items-center justify-between gap-2 rounded-control border border-[var(--io-color-focus)] bg-surface px-3 py-2 text-sm shadow-[0_0_0_1px_var(--io-color-focus)]">
+                <span>Complete</span><ChevronDown className="size-4 text-subtle" />
+              </div>
+              <div className="rounded-control border bg-surface p-1 text-sm shadow-panel">
+                <div className="relative flex items-center rounded-[var(--io-radius-sm)] bg-selected py-2 pl-8 pr-3 text-link"><Check className="absolute left-2 size-4" />Complete</div>
+                <div className="py-2 pl-8 pr-3">Running</div>
+                <div className="py-2 pl-8 pr-3">Needs review</div>
+                <div className="py-2 pl-8 pr-3 opacity-50">Unavailable</div>
+              </div>
             </div>
           </Specimen>
           <Specimen label="Tabs">
@@ -188,6 +220,20 @@ function OverviewPage() {
               </DialogContent>
             </Dialog>
             <p className="m-0 text-xs text-subtle">Select the trigger to inspect the complete overlay state.</p>
+          </Specimen>
+          <Specimen label="Dialog open" note="A contained reference keeps the open state visible in screenshots; the interactive trigger above uses the real Radix dialog.">
+            <div className="grid w-full place-items-center rounded-panel bg-foreground/60 p-5 sm:p-8">
+              <div className="relative grid w-full max-w-lg gap-5 rounded-panel border bg-surface p-6 text-foreground shadow-panel">
+                <button type="button" className="absolute right-4 top-4 grid size-9 place-items-center rounded-control text-subtle" aria-label="Close dialog visual reference"><X className="size-4" /></button>
+                <div className="grid gap-1.5 pr-8">
+                  <h3 className="m-0 text-lg font-semibold tracking-[-0.02em]">Delete this source?</h3>
+                  <p className="m-0 text-sm leading-6 text-muted">This removes the configuration and run history. This action cannot be undone.</p>
+                </div>
+                <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                  <Button variant="ghost">Cancel</Button><Button variant="danger">Delete source</Button>
+                </div>
+              </div>
+            </div>
           </Specimen>
           <Specimen label="Tooltip">
             <TooltipProvider>
